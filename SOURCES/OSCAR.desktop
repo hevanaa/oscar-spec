@@ -1,10 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=oscar
+Exec=OSCAR
 Name=OSCAR
 GenericName=OpenSource CPAP Analysis Reporter
 StartupNotify=true
-Icon=oscar
+Icon=OSCAR
 Terminal=false
 Categories=Science;MedicalSoftware;
-
