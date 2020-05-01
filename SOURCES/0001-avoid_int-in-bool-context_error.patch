@@ -1,0 +1,11 @@
+--- oscar/main.cpp.orig	2020-04-29 21:11:39.000000000 +0300
++++ oscar/main.cpp	2020-05-01 01:16:49.428687124 +0300
+@@ -198,7 +198,7 @@
+                 // Not a new directory.. nag the user.
+                 if (QMessageBox::warning(nullptr, STR_MessageBox_Error,
+                                          QObject::tr("The folder you chose does not contain valid SleepyHead data.") +
+-                                         "\n\n"+QObject::tr("You cannot use this folder:")+" " + datadir ), QMessageBox::Ok) {
++                                         "\n\n"+QObject::tr("You cannot use this folder:")+" " + datadir ), QMessageBox::Ok != 0) {
+                     continue;   // Nope, don't use it, go around the loop again
+                 }
+             }
