@@ -28,10 +28,10 @@ Patch0:         0001-avoid_int-in-bool-context_error.patch
 BuildRequires:  qt5-qtwebkit-devel >= 5.9.0
 BuildRequires:  qt5-qtserialport-devel >= 5.9.0
 BuildRequires:  qt5-qttools-devel >= 5.9.0
-%if 0%{?fedora}
+%if 0%{?fedora}%{?el8}
 BuildRequires:  quazip-qt5-devel
 %endif
-%if 0%{?rhel}
+%if 0%{?el7}
 BuildRequires:  quazip-devel
 %endif
 BuildRequires:  zlib-devel
