@@ -68,7 +68,12 @@ developer afflicted with sleep apnea.
 %build
 mkdir build
 cd build
+%if 0%{?rhel}
+qmake-qt5 QMAKE_CXXFLAGS+=-Wno-error=unused-parameter QMAKE_CFLAGS+=-Wno-error=strict-aliasing ../OSCAR_QT.pro
+%endif
+%if 0%{?fedora}
 qmake-qt5 ../OSCAR_QT.pro
+%endif
 make %{?_smp_mflags}
 
 # Convert icon sizes to freedesktop standard
