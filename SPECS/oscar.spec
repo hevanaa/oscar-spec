@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 # The tarball contains odd named directory; use variables to make %prep work
 %global g_version 1.1.0
-%global g_release 1
+%global g_release 2
 %global dir_name OSCAR-code
 
 Name:           oscar
@@ -39,7 +39,6 @@ BuildRequires:  libstdc++-devel
 BuildRequires:  qt5-linguist
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
-BuildRequires:  ImageMagick
 
 Requires:       qt5-qtwebkit >= 5.9.0
 Requires:       qt5-qtserialport >= 5.9.0
@@ -71,10 +70,6 @@ qmake-qt5 ../OSCAR_QT.pro
 %endif
 make %{?_smp_mflags}
 
-# Convert icon sizes to freedesktop standard
-mogrify -resize 96x96 ../oscar/icons/logo-lm.png
-mogrify -resize 256x256 ../oscar/icons/logo-lg.png
-
 %install
 install -Dm 0755 build/oscar/OSCAR $RPM_BUILD_ROOT%{_bindir}/OSCAR
 
@@ -96,6 +91,8 @@ install -Dpm 0644                                                             \
 oscar/icons/logo-${name[$i]}.png             \
 %{buildroot}%{_datadir}/icons/hicolor/${pxl[$i]}x${pxl[$i]}/apps/OSCAR.png
 done
+install -Dpm 0644 Building/Icons/Full-48.png \
+%{buildroot}%{_datadir}/icons/hicolor/48x48/apps/OSCAR.png
 
 install -d %{buildroot}%{_datadir}/OSCAR/Translations
 install -pm 0644 -t                                                          \
@@ -144,6 +141,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sat May 2 2020 Johan Heikkila <johan.heikkila@gmail.com> - 1.1.0-2
+- Fixed icons
+
 * Fri May 1 2020 Johan Heikkila <johan.heikkila@gmail.com> - 1.1.0-1
 - OSCAR 1.1.0 release
 
