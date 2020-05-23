@@ -1,0 +1,64 @@
+--- oscar/SleepLib/machine_common.h.orig	2020-05-23 15:38:47.802186999 +0300
++++ oscar/SleepLib/machine_common.h	2020-05-23 15:39:32.105992873 +0300
+@@ -109,7 +109,7 @@
+ 
+ struct MachineInfo {
+     MachineInfo() { type = MT_UNKNOWN; version = 0; cap=0; }
+-    MachineInfo(const MachineInfo & copy) = default;
++    MachineInfo(const MachineInfo & /*copy*/) = default;
+ 
+     MachineInfo(MachineType type, quint32 cap, QString loadername, QString brand, QString model, QString modelnumber, QString serial, QString series, QDateTime lastimported, int version) :
+         type(type), cap(cap), loadername(loadername), brand(brand), model(model), modelnumber(modelnumber), serial(serial), series(series), lastimported(lastimported), version(version) {}
+--- oscar/updateparser.h.orig	2020-05-23 16:08:21.307298321 +0300
++++ oscar/updateparser.h	2020-05-23 16:10:10.734370738 +0300
+@@ -43,7 +43,7 @@
+   */
+ struct Release {
+     Release() {}
+-    Release(const Release &copy) = default;
++    Release(const Release & /*copy*/) = default;
+ 
+     Release(QString ver, QString code, UpdateStatus stat) { version = ver; codename = code; status = stat; }
+     QString version;
+@@ -87,7 +87,7 @@
+ class PackageUpdate {
+ public:
+     PackageUpdate() {}
+-    PackageUpdate(const PackageUpdate & copy) = default;
++    PackageUpdate(const PackageUpdate & /*copy*/) = default;
+ 
+     QString name;
+     QString displayName;
+--- oscar/SleepLib/schema.h.orig	2020-05-23 16:13:05.282863453 +0300
++++ oscar/SleepLib/schema.h	2020-05-23 16:13:36.816773155 +0300
+@@ -27,7 +27,7 @@
+         color = Qt::black;
+         type = Calc_Zero;
+     }
+-    ChannelCalc(const ChannelCalc & copy) = default;
++    ChannelCalc(const ChannelCalc & /*copy*/) = default;
+     ChannelCalc(ChannelID code, ChannelCalcType type, QColor color, bool enabled):
+         code(code), type(type), color(color), enabled(enabled) {}
+ 
+--- oscar/SleepLib/loader_plugins/resmed_EDFinfo.h.orig	2020-05-23 16:17:00.477096445 +0300
++++ oscar/SleepLib/loader_plugins/resmed_EDFinfo.h	2020-05-23 16:17:23.316001154 +0300
+@@ -145,7 +145,7 @@
+         date=QDate();
+     }
+     
+-    STRRecord(const STRRecord & copy) = default;
++    STRRecord(const STRRecord & /*copy*/) = default;
+ 
+ // All the data members
+ 
+--- oscar/SleepLib/loader_plugins/resmed_EDFinfo.h.orig	2020-05-23 16:20:46.648217442 +0300
++++ oscar/SleepLib/loader_plugins/resmed_EDFinfo.h	2020-05-23 16:21:14.445143102 +0300
+@@ -232,7 +232,7 @@
+         filename(QString()), edf(nullptr) {}
+     STRFile(QString name, ResMedEDFInfo *str) :
+         filename(name), edf(str) {}
+-    STRFile(const STRFile & copy) = default;
++    STRFile(const STRFile & /*copy*/) = default;
+ 
+     virtual ~STRFile() {}
+ 

@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 # The tarball contains odd named directory; use variables to make %prep work
 %global g_version 1.1.0
-%global g_release 2
+%global g_release 3
 %global dir_name OSCAR-code
 
 Name:           oscar
@@ -23,6 +23,7 @@ Source2:        OSCAR.1
 
 # Required for Fedora 32
 Patch0:         0001-avoid_int-in-bool-context_error.patch
+Patch1:         0002-fix_copy_constructor.patch
 
 BuildRequires:  qt5-qtwebkit-devel >= 5.9.0
 BuildRequires:  qt5-qtserialport-devel >= 5.9.0
@@ -57,12 +58,13 @@ developer afflicted with sleep apnea.
 %setup -q -n %{dir_name}-v%{g_version}
 
 %patch0 -p0
+%patch1 -p0
 
 %build
 mkdir build
 cd build
 %if 0%{?rhel}
-qmake-qt5 QMAKE_CXXFLAGS+=-Wno-error=unused-parameter QMAKE_CFLAGS+=-Wno-error=strict-aliasing ../OSCAR_QT.pro
+qmake-qt5 QMAKE_CFLAGS+=-Wno-error=strict-aliasing ../OSCAR_QT.pro
 %endif
 %if 0%{?fedora}
 qmake-qt5 ../OSCAR_QT.pro
@@ -134,6 +136,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sat May 23 2020 Johan Heikkila <johan.heikkila@gmail.com> - 1.1.0-3
+- Fixed build issue
+
 * Sat May 2 2020 Johan Heikkila <johan.heikkila@gmail.com> - 1.1.0-2
 - Fixed icons
 
