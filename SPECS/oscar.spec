@@ -18,9 +18,8 @@ URL:            https://sleepfiles.com/OSCAR
 Source0:        OSCAR-code-v%{g_version}.tar.bz2
 
 # Upstream provides none of the following files
-Source1:        OSCAR.desktop
-Source2:        OSCAR.appdata.xml
-Source3:        OSCAR.1
+Source1:        org.oscar-team.OSCAR.desktop
+Source2:        OSCAR.1
 
 # Required for Fedora 32
 Patch0:         0001-avoid_int-in-bool-context_error.patch
@@ -28,7 +27,6 @@ Patch0:         0001-avoid_int-in-bool-context_error.patch
 BuildRequires:  qt5-qtwebkit-devel >= 5.9.0
 BuildRequires:  qt5-qtserialport-devel >= 5.9.0
 BuildRequires:  qt5-qttools-devel >= 5.9.0
-BuildRequires:  qt5-qttools-libs-help >= 5.9.0
 BuildRequires:  zlib-devel
 BuildRequires:  mesa-libGL-devel
 BuildRequires:  mesa-libGLU-devel
@@ -42,6 +40,7 @@ BuildRequires:  desktop-file-utils
 
 Requires:       qt5-qtwebkit >= 5.9.0
 Requires:       qt5-qtserialport >= 5.9.0
+Requires:       qt5-qttools-libs-help >= 5.9.0
 
 %description
 OpenSource CPAP Analysis Reporter - OSCAR
@@ -75,12 +74,7 @@ install -Dm 0755 build/oscar/OSCAR $RPM_BUILD_ROOT%{_bindir}/OSCAR
 
 desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{SOURCE1}
 
-install -Dpm 0644                                                             \
-%{SOURCE2} %{buildroot}%{_datadir}/appdata/OSCAR.appdata.xml
-appstream-util                                                                \
-validate-relax --nonet %{buildroot}%{_datadir}/appdata/OSCAR.appdata.xml
-
-install -Dpm 0644 %{SOURCE3} %{buildroot}%{_mandir}/man1/OSCAR.1
+install -Dpm 0644 %{SOURCE2} %{buildroot}%{_mandir}/man1/OSCAR.1
 
 # install icons
 num=( 1 2 3 4 )
@@ -132,8 +126,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %license COPYING
 %doc README
 %{_bindir}/*
-%{_datadir}/applications/OSCAR.desktop
-%{_datadir}/appdata/OSCAR.appdata.xml
+%{_datadir}/applications/org.oscar-team.OSCAR.desktop
 %{_datadir}/icons/hicolor/*/apps/OSCAR.png
 %{_datadir}/OSCAR/
 %{_mandir}/man1/OSCAR.1*
