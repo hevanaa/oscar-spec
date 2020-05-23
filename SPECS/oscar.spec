@@ -136,6 +136,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sat May 23 2020 Johan Heikkila <johan.heikkila@gmail.com> - 1.1.0-4
+- Updated man page
+
 * Sat May 23 2020 Johan Heikkila <johan.heikkila@gmail.com> - 1.1.0-3
 - Fixed build issue
 
