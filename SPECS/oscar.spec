@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 # The tarball contains odd named directory; use variables to make %prep work
 %global g_version 1.1.0
-%global g_release 3
+%global g_release 4
 %global dir_name OSCAR-code
 
 Name:           oscar
