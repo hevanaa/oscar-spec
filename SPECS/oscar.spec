@@ -129,7 +129,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
-* Sat May 23 2020 Johan Heikkila <johan.heikkila@gmail.com> - 1.1.1-1
+* Fri Jun 5 2020 Johan Heikkila <johan.heikkila@gmail.com> - 1.1.1-1
 - Updated to 1.1.1
 
 * Sat May 23 2020 Johan Heikkila <johan.heikkila@gmail.com> - 1.1.0-4
