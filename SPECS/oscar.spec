@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 # The tarball contains odd named directory; use variables to make %prep work
-%global g_version 1.1.0
-%global g_release 4
+%global g_version 1.1.1
+%global g_release 1
 %global dir_name OSCAR-code
 
 Name:           oscar
@@ -20,10 +20,6 @@ Source0:        OSCAR-code-v%{g_version}.tar.bz2
 # Upstream provides none of the following files
 Source1:        org.oscar-team.OSCAR.desktop
 Source2:        OSCAR.1
-
-# Required for Fedora 32
-Patch0:         0001-avoid_int-in-bool-context_error.patch
-Patch1:         0002-fix_copy_constructor.patch
 
 BuildRequires:  qt5-qtwebkit-devel >= 5.9.0
 BuildRequires:  qt5-qtserialport-devel >= 5.9.0
@@ -56,9 +52,6 @@ developer afflicted with sleep apnea.
 
 %prep
 %setup -q -n %{dir_name}-v%{g_version}
-
-%patch0 -p0
-%patch1 -p0
 
 %build
 mkdir build
@@ -136,6 +129,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sat May 23 2020 Johan Heikkila <johan.heikkila@gmail.com> - 1.1.1-1
+- Updated to 1.1.1
+
 * Sat May 23 2020 Johan Heikkila <johan.heikkila@gmail.com> - 1.1.0-4
 - Updated man page
 
