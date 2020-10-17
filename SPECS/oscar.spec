@@ -1,6 +1,6 @@
 %global debug_package %{nil}
 # The tarball contains odd named directory; use variables to make %prep work
-%global g_version 1.1.1
+%global g_version 1.2.0
 %global g_release 1
 %global dir_name OSCAR-code
 
@@ -57,7 +57,7 @@ developer afflicted with sleep apnea.
 mkdir build
 cd build
 %if 0%{?rhel}
-qmake-qt5 QMAKE_CFLAGS+=-Wno-error=strict-aliasing ../OSCAR_QT.pro
+qmake-qt5 QMAKE_CXXFLAGS+=-Wno-error=unused-parameter QMAKE_CFLAGS+=-Wno-error=strict-aliasing ../OSCAR_QT.pro
 %endif
 %if 0%{?fedora}
 qmake-qt5 ../OSCAR_QT.pro
@@ -129,6 +129,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sat Oct 17 2020 Johan Heikkila <johan.heikkila@gmail.com> - 1.2.0-1
+- Updated to 1.2.0
+
 * Fri Jun 5 2020 Johan Heikkila <johan.heikkila@gmail.com> - 1.1.1-1
 - Updated to 1.1.1
 
