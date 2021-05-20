@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 # The tarball contains odd named directory; use variables to make %prep work
 %global g_version 1.2.0
-%global g_release 1
+%global g_release 2
 %global dir_name OSCAR-code
 
 Name:           oscar
@@ -60,7 +60,7 @@ cd build
 qmake-qt5 QMAKE_CXXFLAGS+=-Wno-error=unused-parameter QMAKE_CFLAGS+=-Wno-error=strict-aliasing ../OSCAR_QT.pro
 %endif
 %if 0%{?fedora}
-qmake-qt5 ../OSCAR_QT.pro
+qmake-qt5 QMAKE_CXXFLAGS+=-Wno-deprecated-declarations QMAKE_CXXFLAGS+=-Wno-error=stringop-overread QMAKE_CXXFLAGS+=-Wno-misleading-indentation ../OSCAR_QT.pro
 %endif
 make %{?_smp_mflags}
 
@@ -129,6 +129,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Tue May 18 2021 Johan Heikkila <johan.heikkila@gmail.com> - 1.2.0-2
+- Fixed build in Fedora 34
+
 * Sat Oct 17 2020 Johan Heikkila <johan.heikkila@gmail.com> - 1.2.0-1
 - Updated to 1.2.0
 
