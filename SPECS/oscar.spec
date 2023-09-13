@@ -1,6 +1,6 @@
 %global debug_package %{nil}
 # The tarball contains odd named directory; use variables to make %prep work
-%global g_version 1.3.1
+%global g_version 1.5.0
 %global g_release 1
 %global dir_name OSCAR-code
 
@@ -129,6 +129,12 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Wed Sep 13 2023 Johan Heikkila <johan.heikkila@gmail.com> - 1.5.0-1
+- Updated to 1.5.0
+
+* Mon Aug 8 2022 Johan Heikkila <johan.heikkila@gmail.com> - 1.4.0-1
+- Updated to 1.4.0
+
 * Mon Mar 28 2022 Johan Heikkila <johan.heikkila@gmail.com> - 1.3.1-1
 - Updated to 1.3.1
 
