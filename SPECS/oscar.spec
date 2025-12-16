@@ -1,29 +1,36 @@
 %global debug_package %{nil}
 # The tarball contains odd named directory; use variables to make %prep work
-%global g_version 1.5.1
-%global g_release 1
+%global g_version 1.7.0
+%global g_release 2
 %global dir_name OSCAR-code
 
 Name:           oscar
 Version:        %{g_version}
 Release:        %{g_release}%{?dist}
-Summary:        Open Sourece CPAP Analysis Reporter
+Summary:        Open Source CPAP Analysis Reporter
 Group:          Applications/Engineering
 License:        GPLv3
 URL:            https://sleepfiles.com/OSCAR
 # The source of this package was pulled from upstreams's vcs.
 # Use the following command to generate the tar ball:
-# git clone https://gitlab.com/pholy/OSCAR-code.git
-# tar cvjf OSCAR-code-v%{g_version}.tar.bz2 oscar-code/
-Source0:        OSCAR-code-v%{g_version}.tar.bz2
+# git clone https://gitlab.com/CrimsonNape/OSCAR-code.git
+# tar cvjf OSCAR-code-%{g_version}.tar.bz2 oscar-code/
+Source0:        OSCAR-code-%{g_version}.tar.bz2
 
 # Upstream provides none of the following files
 Source1:        org.oscar-team.OSCAR.desktop
 Source2:        OSCAR.1
 
-BuildRequires:  qt5-qtwebkit-devel >= 5.9.0
-BuildRequires:  qt5-qtserialport-devel >= 5.9.0
-BuildRequires:  qt5-qttools-devel >= 5.9.0
+%if 0%{?rhel} && 0%{?rhel} < 9
+BuildRequires:  qt5-qtserialport-devel
+BuildRequires:  qt5-qttools-devel
+BuildRequires:  qt5-linguist
+%else
+BuildRequires:  qt6-qtserialport-devel
+BuildRequires:  qt6-qttools-devel
+BuildRequires:  qt6-linguist
+%endif
+
 BuildRequires:  zlib-devel
 BuildRequires:  mesa-libGL-devel
 BuildRequires:  mesa-libGLU-devel
@@ -31,13 +38,16 @@ BuildRequires:  libX11-devel
 BuildRequires:  glibc-devel
 BuildRequires:  libstdc++-devel
 
-BuildRequires:  qt5-linguist
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
 
-Requires:       qt5-qtwebkit >= 5.9.0
-Requires:       qt5-qtserialport >= 5.9.0
-Requires:       qt5-qttools-libs-help >= 5.9.0
+%if 0%{?rhel} && 0%{?rhel} < 9
+Requires:	qt5-qtserialport
+Requires:	qt5-qttools-libs-help
+%else
+Requires:       qt6-qtserialport
+Requires:       qt6-qttools-libs-help
+%endif
 
 %description
 OpenSource CPAP Analysis Reporter - OSCAR
@@ -51,16 +61,19 @@ SleepyHead was written by Mark Watkins (aka Jedimark), an Australian software
 developer afflicted with sleep apnea.
 
 %prep
-%setup -q -n %{dir_name}-v%{g_version}
+%setup -q -n %{dir_name}-%{g_version}
 
 %build
 mkdir build
 cd build
-%if 0%{?rhel}
+%if 0%{?rhel} && 0%{?rhel} < 9
 qmake-qt5 QMAKE_CXXFLAGS+=-Wno-error=unused-parameter QMAKE_CFLAGS+=-Wno-error=strict-aliasing ../OSCAR_QT.pro
 %endif
+%if 0%{?rhel} && 0%{?rhel} >= 9
+qmake6 QMAKE_CXXFLAGS+=-Wno-error=unused-parameter QMAKE_CFLAGS+=-Wno-error=strict-aliasing ../OSCAR_QT.pro
+%endif
 %if 0%{?fedora}
-qmake-qt5 QMAKE_CXXFLAGS+=-Wno-deprecated-declarations QMAKE_CXXFLAGS+=-Wno-error=stringop-overread QMAKE_CXXFLAGS+=-Wno-misleading-indentation ../OSCAR_QT.pro
+qmake6 QMAKE_CXXFLAGS+=-Wno-deprecated-declarations QMAKE_CXXFLAGS+=-Wno-error=stringop-overread QMAKE_CXXFLAGS+=-Wno-misleading-indentation ../OSCAR_QT.pro
 %endif
 make %{?_smp_mflags}
 
@@ -129,6 +142,18 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Wed Dec 10 2025 Johan Heikkila <johan.heikkila@gmail.com> - 1.7.0-2
+- Updated for Qt6 build
+
+* Wed Dec 10 2025 Johan Heikkila <johan.heikkila@gmail.com> - 1.7.0-1
+- Updated to 1.7.0
+
+* Mon Jul 21 2025 Johan Heikkila <johan.heikkila@gmail.com> - 1.6.1-1
+- Updated to 1.6.1
+
+* Fri Apr 18 2025 Johan Heikkila <johan.heikkila@gmail.com> - 1.6.0-1
+- Updated to 1.6.0
+
 * Tue Nov 7 2023 Johan Heikkila <johan.heikkila@gmail.com> - 1.5.1-1
 - Updated to 1.5.1
 
