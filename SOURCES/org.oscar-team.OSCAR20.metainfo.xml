@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2011-2018 Mark Watkins <mark@jedimark.net>. Copyright (c) 2019-2026 The OSCAR Team -->
+<component type="desktop-application">
+ <id>org.oscar-team.OSCAR20</id>
+ <name>OSCAR 2</name>
+ <summary>Open Source CPAP Analysis Reporter</summary>
+ <url type="homepage">https://sleepfiles.com/OSCAR/</url>
+ <url type="bugtracker">https://gitlab.com/CrimsonNape/OSCAR-SQL/-/issues</url>
+ <content_rating type="oars-1.1"/>
+ <project_license>GPL-3.0-only</project_license>
+ <metadata_license>CC0-1.0</metadata_license>
+ <developer id="org.oscar-team">
+  <name>The OSCAR Team</name>
+ </developer>
+ <description>
+  <p>OSCAR is a cross-platform, open source sleep tracking program for
+  reviewing CPAP and oximetry data, which are devices used in the treatment
+  of sleep disorders like obstructive sleep apnea.</p>
+  <p>OSCAR is a derivative of SleepyHead, written by Mark Watkins.
+  OSCAR 2 stores its data in an SQL database and can be installed in parallel
+  with OSCAR 1.x.</p>
+ </description>
+ <categories>
+  <category>Science</category>
+  <category>MedicalSoftware</category>
+ </categories>
+ <launchable type="desktop-id">org.oscar-team.OSCAR20.desktop</launchable>
+ <provides>
+  <binary>OSCAR20</binary>
+ </provides>
+ <releases>
+  <release version="2.1.0" date="2026-10-08"/>
+  <release version="2.0.1" date="2026-06-22"/>
+ </releases>
+</component>

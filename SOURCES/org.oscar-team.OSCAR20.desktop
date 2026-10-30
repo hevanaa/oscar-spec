@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.1
+Name=OSCAR20
+GenericName=CPAP Reporter
+TryExec=OSCAR20
+Exec=OSCAR20
+Terminal=false
+Icon=OSCAR20
+Type=Application
+Categories=Education;Science;
+StartupNotify=true
+X-GNOME-UsesNotifications=true
+StartupWMClass=OSCAR20
